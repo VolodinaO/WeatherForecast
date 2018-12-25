@@ -1,0 +1,60 @@
+body{
+    background-color: #F4F4F4;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    vertical-align: middle;
+}
+header{
+    font-size: 30px;
+    padding: 10px;
+}
+img{
+    width: 50%;
+    color: dodgerblue;
+}
+.weather-block{
+    padding: 10px;
+    font-size: 20px;
+    color: black;
+}
+.row-padding{
+    width: 960px;
+    height: 340px;
+    padding: 0 5px 0 5px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.container{
+    background-color: white;
+    padding: 5px;
+    margin: 5px;
+    display: inline-block;
+    width: 220px;
+    height: 340px;
+}
+.font-awesome{
+    display: inline;
+    font-size: 80px;
+    background-color: transparent;
+    border-color: transparent;
+}
+.mini-font{
+    font-size: 14px;
+    margin: 5px;
+}
+.midi-font{
+    font-size: 28px;
+    font-weight: bold;
+    margin: 5px;
+}
+.grey-font{
+    color: #BDBDBD;
+    font-size: 20px;
+    margin: 5px;
+}
+.margin-30{
+    margin: 30px;
+}
+.fa-angle-left{
+    color: lightgray;
+}

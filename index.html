@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<script type="text/javascript" src="weather.json"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Прогноз погоды</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<header>
+    <p>Прогноз погоды</p>
+</header>
+<div class="weather-block">
+    <button class="font-awesome prev">
+        <i class="fa fa-angle-left" aria-hidden="true"></i>
+    </button>
+    <div class="row-padding" id="weather-padding"></div>
+    <button class="font-awesome next">
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+    </button>
+</div>
+</body>
+
+<script>
+    var data = [
+        {
+            "date": 1538337600000,
+            "temperature": {
+                "night": -3,
+                "day": 2
+            },
+            "cloudiness": "Ясно",
+            "snow": false,
+            "rain": false
+        },
+        {
+            "date": 1538424000000,
+            "temperature": {
+                "night": 0,
+                "day": 4
+            },
+            "cloudiness": "Облачно",
+            "snow": false,
+            "rain": true
+        },
+        {
+            "date": 1538510400000,
+            "temperature": {
+                "night": 0,
+                "day": 1
+            },
+            "cloudiness": "Облачно",
+            "snow": true,
+            "rain": true
+        },
+        {
+            "date": 1538596800000,
+            "temperature": {
+                "night": -3,
+                "day": -1
+            },
+            "cloudiness": "Облачно",
+            "snow": true,
+            "rain": false
+        }
+    ];
+
+    var week = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+    var month = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+
+    function imagesFunc(clouds, rain, snow) {
+        if (clouds === 'Ясно') {
+            return 'weather-sun.svg';
+        } else if (rain === true && snow === true) {
+            return 'weather-rain-snow.svg';
+        } else if (rain === true) {
+            return 'weather-rain.svg';
+        } else if (snow === true) {
+            return 'weather-snow.svg';
+        } else {
+            return 'weather-cloud.svg';
+        }
+    }
+
+    function cloudinessFunc(clouds, rain, snow) {
+        if (clouds === 'Ясно') {
+            return 'без осадков';
+        } else if (rain === true && snow === true) {
+            return 'дождь со снегом';
+        } else if (rain === true) {
+            return 'дождь';
+        } else if (snow === true) {
+            return 'снег';
+        } else {
+            return 'без осадков';
+        }
+    }
+
+    function today(index, date) {
+        if (index === 0) {
+            return 'Сегодня';
+        } else
+        return week[new Date(date).getDay()];
+    }
+
+    $(data).each(function(index, item) {
+        $('#weather-padding').append(
+        '<div class="container" >' +
+            '<p class="mini-font">' + today(index, item.date) +'</p>' +
+            '<p class="midi-font">' + new Date(item.date).getDate() + ' ' + month[new Date(item.date).getMonth()] + '</p>' +
+            '<img src="' + imagesFunc(item.cloudiness, item.rain, item.snow) + '">' +
+            '<p class="midi-font">' + 'днем ' + item.temperature.day + '°' + '</p>' +
+            '<p class="grey-font" id="night">' + 'ночью ' + item.temperature.night + '°' + '</p>' +
+            '<p class="grey-font margin-30" id="cloudiness">' + cloudinessFunc(item.cloudiness, item.rain, item.snow) + '</p>' +
+        '</div>'
+        );
+    });
+
+</script>
+</html>
